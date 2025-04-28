@@ -9,7 +9,7 @@ services:
     volumes:
       - ./game:/opt/enshrouded
     environment:
-      - SERVER_NAME=Public Resource World v5.1.23 (30min reset)
+      - SERVER_NAME=Public Resource World v5.1.24 (30min reset)
       - SERVER_QUERYPORT=15638
       - UPDATE_CRON=42 */2 * * *
       - UPDATE_CHECK_PLAYERS=false
