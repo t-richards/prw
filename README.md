@@ -31,7 +31,14 @@ backup
 ...
 ```
 
-3. Start the maintenance service to automatically restart the server and reset the save files.
+3. Note that if your save files are in a different slot (e.g., slot 10), they will need to be adjusted to slot 1. You can achieve this by running the `fixer.sh` script in the root directory.
+
+```sh-session
+$ cd backup
+$ ../fixer.sh
+```
+
+4. Start the maintenance service to automatically restart the server and reset the save files.
 
 See the `Dockerfile` and the `crontabs/root` file for changing the schedule.
 
