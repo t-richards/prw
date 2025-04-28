@@ -1,0 +1,34 @@
+services:
+  enshrouded:
+    image: mornedhels/enshrouded-server:stable-proton
+    network_mode: "host"
+    container_name: enshrouded
+    hostname: enshrouded
+    restart: unless-stopped
+    stop_grace_period: 90s
+    volumes:
+      - ./game:/opt/enshrouded
+    environment:
+      - SERVER_NAME=Public Resource World v5.1.23 (30min reset)
+      - SERVER_QUERYPORT=15638
+      - UPDATE_CRON=42 */2 * * *
+      - UPDATE_CHECK_PLAYERS=false
+      - PUID=1000
+      - PGID=1000
+      # Settings
+      - SERVER_ENABLE_TEXT_CHAT=true
+      # Server roles
+      - SERVER_ROLE_0_NAME=Players
+      - SERVER_ROLE_0_CAN_ACCESS_INVENTORIES=true
+      - SERVER_ROLE_0_CAN_EDIT_BASE=true
+      - SERVER_ROLE_0_CAN_KICK_BAN=false
+  maintenance:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: maintenance
+    restart: unless-stopped
+    volumes:
+      - ./game:/mnt/game
+      - ./backup:/mnt/backup:ro
+      - /var/run/docker.sock:/var/run/docker.sock

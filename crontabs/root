@@ -1,0 +1,3 @@
+# min	hour	day	month	weekday	command
+*/30	*	*	*	*	run-parts /etc/periodic/30min
+0	*	*	*	*	run-parts /etc/periodic/hourly
